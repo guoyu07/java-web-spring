@@ -57,9 +57,7 @@
         <constructor-arg value="USA"></constructor-arg>
     </bean>
 
-    <bean id="cStartEventHandler"
-          class="com.tutorialspoint.CStartEventHandler"/>
+    <bean id="cStartEventHandler" class="com.tutorialspoint.CStartEventHandler"/>
 
-    <bean id="cStopEventHandler"
-          class="com.tutorialspoint.CStopEventHandler"/>
+    <bean id="cStopEventHandler" class="com.tutorialspoint.CStopEventHandler"/>
 </beans>

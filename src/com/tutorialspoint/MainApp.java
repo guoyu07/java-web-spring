@@ -18,6 +18,8 @@ public class MainApp {
     private void useApplicationContext() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
+        context.start();
+
         HelloWorld helloWorld = (HelloWorld)context.getBean("helloWorld");
 
         TextEditor editor = (TextEditor)context.getBean("textEditor");
@@ -33,6 +35,7 @@ public class MainApp {
 
         context.registerShutdownHook();
 
+        context.stop();
 
         AnnotationConfigApplicationContext annoContext = new AnnotationConfigApplicationContext();
         annoContext.register(HelloWorldConfig.class);
