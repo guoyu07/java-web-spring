@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="helloWorld" class="com.tutorialspoint.HelloWorld">
+        <property name="message1" value="Hello World!"/>
+        <property name="message2" value="Hello Second World!"/>
+    </bean>
+
+    <bean id="helloIndia" class="com.tutorialspoint.HelloIndia" parent="helloWorld">
+        <property name="message1" value="Hello India!"/>
+        <property name="message3" value="Namaste India!"/>
+    </bean>
+
+    <bean class="com.tutorialspoint.InitHelloWorld" />
+
+    <!-- Definition for textEditor bean -->
+    <bean id="textEditor" class="com.tutorialspoint.TextEditor" autowire="constructor">
+        <!-- <constructor-arg ref="spellChecker"/> 采用xml autowire自动装配 -->
+        <constructor-arg index="1" type="java.lang.String" value="good"/>
+
+        <!-- <property name="anotherOne" ref="spellChecker"></property> 采用注解 autowire byType自动装配 -->
+        <property name="innerSpell">
+            <bean id="innerBean" class="com.tutorialspoint.SpellChecker"></bean>
+        </property>
+        <property name="arr">
+            <list>
+                <value>elems</value>
+                <ref bean="spellChecker"></ref>
+            </list>
+        </property>
+        <property name="kv">
+            <map>
+                <entry key="one" value="anything"></entry>
+                <entry key="two" value-ref="spellChecker"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Definition for spellChecker bean -->
+    <bean id="spellChecker" class="com.tutorialspoint.SpellChecker"></bean>
+    <bean id="spellChecker2" class="com.tutorialspoint.SpellChecker">
+        <property name="name" value="spellChecker2"></property>
+    </bean>
+
+
+    <bean id="student" class="com.tutorialspoint.Student">
+        <property name="name"  value="Zara" />
+        <property name="age"  value="11"/>
+    </bean>
+
+    <bean id="from" class="java.lang.String">
+        <constructor-arg value="USA"></constructor-arg>
+    </bean>
+
+    <bean id="cStartEventHandler"
+          class="com.tutorialspoint.CStartEventHandler"/>
+
+    <bean id="cStopEventHandler"
+          class="com.tutorialspoint.CStopEventHandler"/>
+</beans>
