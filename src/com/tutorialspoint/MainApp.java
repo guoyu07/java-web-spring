@@ -33,6 +33,9 @@ public class MainApp {
         System.out.println("Name : " + student.getName() );
         System.out.println("Age : " + student.getAge() );
 
+        CustomEventPublisher pub = (CustomEventPublisher)context.getBean("customEventPublisher");
+        pub.publish();
+
         context.registerShutdownHook();
 
         context.stop();
